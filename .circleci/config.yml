@@ -7,6 +7,8 @@ jobs:
       - checkout
       - run: echo "A first hello"
   notify:
+     docker:
+        - image: circleci/ruby:2.4.1
      description: Send webhook to slackbot about job status
      steps:
       - run:
@@ -25,4 +27,6 @@ workflows:
     jobs:
       - build
       - notify
-        
+         requires:
+         - build
+
