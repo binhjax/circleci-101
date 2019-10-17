@@ -15,12 +15,12 @@ jobs:
           name: On success
           when: on_success
           command: |
-            curl 'http://14.232.215.113:9164/api/webhook/circleci?token=2f528a7cd9a765f59ff11133782ea8527eb0e7f9'  -d '{"reponame":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","circle_job":"'"$CIRCLE_JOB"'","outcome":"fixed","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i
+            curl 'http://14.232.215.113:9164/api/webhook/circleci?token=2f528a7cd9a765f59ff11133782ea8527eb0e7f9'  -d '{"reponame":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","circleci_job":"'"$CIRCLE_JOB"'","outcome":"fixed","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i
       - run:
           name: On fail
           when: on_fail
           command: |
-            curl 'http://14.232.215.113:9164/api/webhook/circleci?token=2f528a7cd9a765f59ff11133782ea8527eb0e7f9' -d '{"reponame":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","circle_job":"'"$CIRCLE_JOB"'","outcome":"failed","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i       
+            curl 'http://14.232.215.113:9164/api/webhook/circleci?token=2f528a7cd9a765f59ff11133782ea8527eb0e7f9' -d '{"reponame":"'"$CIRCLE_PROJECT_REPONAME"'","branch":"'"$CIRCLE_BRANCH"'","circleci_job":"'"$CIRCLE_JOB"'","outcome":"failed","build_url":"'"$CIRCLE_BUILD_URL"'"}' -H "Content-Type: application/json" -X POST -i       
 workflows:
   version: 2
   test-workflow:
