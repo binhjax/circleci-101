@@ -7,6 +7,13 @@ jobs:
       - checkout
       - run: echo "A first hello"
   notify:
-    webhooks:
-      - url: http://14.232.215.113:9164/api/webhook/circleci?token= 2f528a7cd9a765f59ff11133782ea8527eb0e7f9        
-      
+    steps:
+      webhooks:
+        - url: http://14.232.215.113:9164/api/webhook/circleci?token= 2f528a7cd9a765f59ff11133782ea8527eb0e7f9        
+orbs:
+  slack: circleci/slack@x.y.z
+workflows:
+  test-workflow:
+    jobs:
+      - build
+      - notify
